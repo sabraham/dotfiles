@@ -14,3 +14,6 @@ for file in $files; do
     mv ~/.$file $dir_old
     ln -s $dir/$file ~/.$file
 done
+
+rm ~/.bash_profile
+ln -s $dir/bash_profile ~/.bash_profile
