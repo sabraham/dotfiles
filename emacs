@@ -20,6 +20,7 @@
 	    (auto-fill-mode 1)
 	    (if (eq window-system 'x)
 		(font-lock-mode 1))))
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (setq load-path (cons (expand-file-name "~/.emacs.d/") load-path))
 (autoload 'word-count-mode "word-count"
   "Minor mode to count words." t nil)

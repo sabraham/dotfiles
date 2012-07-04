@@ -17,3 +17,5 @@ done
 
 rm ~/.bash_profile
 ln -s $dir/bash_profile ~/.bash_profile
+
+ln -s $dir/ssh/config ~/.ssh/config
