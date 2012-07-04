@@ -1,0 +1,8 @@
+alias reload="source ~/dotfiles/bash/alias"
+alias editalias="emacs ~/dotfiles/bash/alias && reload"
+
+alias p="python" 
+function take {
+mkdir $1
+cd $1
+}
