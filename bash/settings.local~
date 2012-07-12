@@ -1,1 +1,1 @@
-# alias emacs="/usr/bin/emacs-snapshot -nw"
+alias emacs="/usr/bin/emacs-snapshot -nw"

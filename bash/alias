@@ -1,4 +1,3 @@
-alias emacs="emacs -nw"
 alias reload="source ~/dotfiles/bash/alias"
 alias editalias="emacs ~/dotfiles/bash/alias && reload"
 

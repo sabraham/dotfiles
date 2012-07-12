@@ -1,6 +1,7 @@
-;;(add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-;;(add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist
