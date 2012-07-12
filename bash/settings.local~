@@ -1,3 +1,1 @@
-alias emacs="/usr/local/Cellar/emacs/HEAD/bin/emacs -nw"
-
-
+# alias emacs="/usr/bin/emacs-snapshot -nw"
