@@ -1,4 +1,6 @@
+(add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
 (setq inhibit-startup-message t) ;; No splash screen
