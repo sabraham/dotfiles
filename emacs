@@ -19,6 +19,8 @@
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+            '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (when (memq window-system '(mac ns))
@@ -48,24 +50,25 @@
             (setq hl-paren-colors
               '("red1" "orange1" "yellow1" "green1" "cyan1"
                 "slateblue1" "magenta1" "purple"))))
-(defvar blink-cursor-colors (list  "#92c48f" "#6785c5" "#be369c" "#d9ca65")
-  "On each blink the cursor will cycle to the next color in this list.")
 
-(setq blink-cursor-count 0)
-(defun blink-cursor-timer-function ()
-  "Zarza wrote this cyberpunk variant of timer `blink-cursor-timer'. 
-Warning: overwrites original version in `frame.el'.
+;; (defvar blink-cursor-colors (list  "#92c48f" "#6785c5" "#be369c" "#d9ca65")
+;;   "On each blink the cursor will cycle to the next color in this list.")
 
-This one changes the cursor color on each blink. Define colors in `blink-cursor-colors'."
-  (when (not (internal-show-cursor-p))
-    (when (>= blink-cursor-count (length blink-cursor-colors))
-      (setq blink-cursor-count 0))
-    (set-cursor-color (nth blink-cursor-count blink-cursor-colors))
-    (setq blink-cursor-count (+ 1 blink-cursor-count))
-    )
-  (internal-show-cursor nil (not (internal-show-cursor-p)))
-  )
-(blink-cursor-mode t)
+;; (setq blink-cursor-count 0)
+;; (defun blink-cursor-timer-function ()
+;;   "Zarza wrote this cyberpunk variant of timer `blink-cursor-timer'. 
+;; Warning: overwrites original version in `frame.el'.
+
+;; This one changes the cursor color on each blink. Define colors in `blink-cursor-colors'."
+;;   (when (not (internal-show-cursor-p))
+;;     (when (>= blink-cursor-count (length blink-cursor-colors))
+;;       (setq blink-cursor-count 0))
+;;     (set-cursor-color (nth blink-cursor-count blink-cursor-colors))
+;;     (setq blink-cursor-count (+ 1 blink-cursor-count))
+;;     )
+;;   (internal-show-cursor nil (not (internal-show-cursor-p)))
+;;   )
+;; (blink-cursor-mode t)
 
 (require 'cl)
 (defun unicode-symbol (name)
@@ -151,7 +154,7 @@ This one changes the cursor color on each blink. Define colors in `blink-cursor-
          (cons "\\<\\(gamma\\)\\>" 'gamma)
          (cons "\\<\\(delta\\)\\>" 'delta)
          (cons "\\(''\\)" 'double-prime)
-         (cons "\\('\\)" 'prime)
+         ;;(cons "\\('\\)" 'prime)
          (cons "\\<\\(List.for_all\\)\\>" 'for-all)
          (cons "\\<\\(List.exists\\)\\>" 'there-exists)
          (cons "\\<\\(List.mem\\)\\>" 'element-of)
@@ -160,3 +163,51 @@ This one changes the cursor color on each blink. Define colors in `blink-cursor-
 (add-hook 'tuareg-mode-hook 'ocaml-unicode)
 (load-theme 'solarized-light t)
 (add-to-list 'auto-mode-alist '("\.ml$" . tuareg-mode))
+(x-focus-frame nil)
+
+(require 'nrepl)
+ 
+;; Configure nrepl.el
+(setq nrepl-hide-special-buffers t)
+(setq nrepl-popup-stacktraces-in-repl t)
+(setq nrepl-history-file "~/.emacs.d/nrepl-history")
+ 
+;; Some default eldoc facilities
+(add-hook 'nrepl-connected-hook
+(defun pnh-clojure-mode-eldoc-hook ()
+(add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(nrepl-enable-on-existing-clojure-buffers)))
+ 
+;; Repl mode hook
+(add-hook 'nrepl-mode-hook 'subword-mode)
+ 
+;; Auto completion for NREPL
+(require 'ac-nrepl)
+(eval-after-load "auto-complete"
+'(add-to-list 'ac-modes 'nrepl-mode))
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+
+(require 'nrepl)
+ 
+;; Configure nrepl.el
+(setq nrepl-hide-special-buffers t)
+(setq nrepl-popup-stacktraces-in-repl t)
+(setq nrepl-history-file "~/.emacs.d/nrepl-history")
+ 
+;; Some default eldoc facilities
+(add-hook 'nrepl-connected-hook
+(defun pnh-clojure-mode-eldoc-hook ()
+  (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+  (nrepl-enable-on-existing-clojure-buffers)))
+ 
+;; Repl mode hook
+(add-hook 'nrepl-mode-hook 'subword-mode)
+ 
+;; Auto completion for NREPL
+(require 'ac-nrepl)
+(eval-after-load "auto-complete"
+'(add-to-list 'ac-modes 'nrepl-mode))
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(put 'erase-buffer 'disabled nil)
