@@ -7,11 +7,11 @@
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
 (add-hook 'octave-mode-hook
-	  (lambda ()
-	    (abbrev-mode 1)
-	    (auto-fill-mode 1)
-	    (if (eq window-system 'x)
-		(font-lock-mode 1))))
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
 (setq load-path (cons (expand-file-name "~/.emacs.d/") load-path))
 (autoload 'word-count-mode "word-count"
   "Minor mode to count words." t nil)
@@ -20,7 +20,7 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
-            '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (when (memq window-system '(mac ns))
@@ -36,8 +36,8 @@
             (paredit-mode t)
             (set-fill-column 80)
             (setq hl-paren-colors
-              '("red1" "orange1" "yellow1" "green1" "cyan1"
-                "slateblue1" "magenta1" "purple"))))
+                  '("red1" "orange1" "yellow1" "green1" "cyan1"
+                    "slateblue1" "magenta1" "purple"))))
 (setq scheme-program-name
       "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
 (require 'xscheme)
@@ -48,15 +48,15 @@
             (paredit-mode t)
             (set-fill-column 80)
             (setq hl-paren-colors
-              '("red1" "orange1" "yellow1" "green1" "cyan1"
-                "slateblue1" "magenta1" "purple"))))
+                  '("red1" "orange1" "yellow1" "green1" "cyan1"
+                    "slateblue1" "magenta1" "purple"))))
 
 ;; (defvar blink-cursor-colors (list  "#92c48f" "#6785c5" "#be369c" "#d9ca65")
 ;;   "On each blink the cursor will cycle to the next color in this list.")
 
 ;; (setq blink-cursor-count 0)
 ;; (defun blink-cursor-timer-function ()
-;;   "Zarza wrote this cyberpunk variant of timer `blink-cursor-timer'. 
+;;   "Zarza wrote this cyberpunk variant of timer `blink-cursor-timer'.
 ;; Warning: overwrites original version in `frame.el'.
 
 ;; This one changes the cursor color on each blink. Define colors in `blink-cursor-colors'."
@@ -73,51 +73,51 @@
 (require 'cl)
 (defun unicode-symbol (name)
   "Translate a symbolic name for a Unicode character -- e.g., LEFT-ARROW
-  or GREATER-THAN into an actual Unicode character code. "
+or GREATER-THAN into an actual Unicode character code. "
   (decode-char 'ucs (case name
-                          ;; arrows
-                          ('left-arrow 8592)
-                          ('up-arrow 8593)
-                          ('right-arrow 8594)
-                          ('down-arrow 8595)
-                          ;; boxes
-                          ('double-vertical-bar #X2551)
-                          ;; relational operators
-                          ('equal #X003d)
-                          ('not-equal #X2260)
-                          ('identical #X2261)
-                          ('not-identical #X2262)
-                          ('less-than #X003c)
-                          ('greater-than #X003e)
-                          ('less-than-or-equal-to #X2264)
-                          ('greater-than-or-equal-to #X2265)
-                          ;; logical operators
-                          ('logical-and #X2227)
-                          ('logical-or #X2228)
-                          ('logical-neg #X00AC)
-                          ;; misc
-                          ('nil #X2205)
-                          ('horizontal-ellipsis #X2026)
-                          ('double-exclamation #X203C)
-                          ('prime #X2032)
-                          ('double-prime #X2033)
-                          ('for-all #X2200)
-                          ('there-exists #X2203)
-                          ('element-of #X2208)
-                          ;; mathematical operators
-                          ('square-root #X221A)
-                          ('squared #X00B2)
-                          ('cubed #X00B3)
-                          ;; letters
-                          ('lambda #X03BB)
-                          ('alpha #X03B1)
-                          ('beta #X03B2)
-                          ('gamma #X03B3)
-                          ('delta #X03B4))))
+                      ;; arrows
+                      ('left-arrow 8592)
+                      ('up-arrow 8593)
+                      ('right-arrow 8594)
+                      ('down-arrow 8595)
+                      ;; boxes
+                      ('double-vertical-bar #X2551)
+                      ;; relational operators
+                      ('equal #X003d)
+                      ('not-equal #X2260)
+                      ('identical #X2261)
+                      ('not-identical #X2262)
+                      ('less-than #X003c)
+                      ('greater-than #X003e)
+                      ('less-than-or-equal-to #X2264)
+                      ('greater-than-or-equal-to #X2265)
+                      ;; logical operators
+                      ('logical-and #X2227)
+                      ('logical-or #X2228)
+                      ('logical-neg #X00AC)
+                      ;; misc
+                      ('nil #X2205)
+                      ('horizontal-ellipsis #X2026)
+                      ('double-exclamation #X203C)
+                      ('prime #X2032)
+                      ('double-prime #X2033)
+                      ('for-all #X2200)
+                      ('there-exists #X2203)
+                      ('element-of #X2208)
+                      ;; mathematical operators
+                      ('square-root #X221A)
+                      ('squared #X00B2)
+                      ('cubed #X00B3)
+                      ;; letters
+                      ('lambda #X03BB)
+                      ('alpha #X03B1)
+                      ('beta #X03B2)
+                      ('gamma #X03B3)
+                      ('delta #X03B4))))
 
 (defun substitute-pattern-with-unicode (pattern symbol)
-  "Add a font lock hook to replace the matched part of PATTERN with the 
-  Unicode symbol SYMBOL looked up with UNICODE-SYMBOL."
+  "Add a font lock hook to replace the matched part of PATTERN with the
+Unicode symbol SYMBOL looked up with UNICODE-SYMBOL."
   (interactive)
   (font-lock-add-keywords
    nil `((,pattern (0 (progn (compose-region (match-beginning 1) (match-end 1)
@@ -166,48 +166,67 @@
 (x-focus-frame nil)
 
 (require 'nrepl)
- 
+
 ;; Configure nrepl.el
 (setq nrepl-hide-special-buffers t)
 (setq nrepl-popup-stacktraces-in-repl t)
 (setq nrepl-history-file "~/.emacs.d/nrepl-history")
- 
+
 ;; Some default eldoc facilities
 (add-hook 'nrepl-connected-hook
-(defun pnh-clojure-mode-eldoc-hook ()
-(add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-(nrepl-enable-on-existing-clojure-buffers)))
- 
+          (defun pnh-clojure-mode-eldoc-hook ()
+            (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+            (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+            (nrepl-enable-on-existing-clojure-buffers)))
+
 ;; Repl mode hook
 (add-hook 'nrepl-mode-hook 'subword-mode)
- 
+
 ;; Auto completion for NREPL
 (require 'ac-nrepl)
 (eval-after-load "auto-complete"
-'(add-to-list 'ac-modes 'nrepl-mode))
+  '(add-to-list 'ac-modes 'nrepl-mode))
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 
 (require 'nrepl)
- 
+
 ;; Configure nrepl.el
 (setq nrepl-hide-special-buffers t)
 (setq nrepl-popup-stacktraces-in-repl t)
 (setq nrepl-history-file "~/.emacs.d/nrepl-history")
- 
+
 ;; Some default eldoc facilities
 (add-hook 'nrepl-connected-hook
-(defun pnh-clojure-mode-eldoc-hook ()
-  (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
-  (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-  (nrepl-enable-on-existing-clojure-buffers)))
- 
+          'nrepl-enable-on-existing-clojure-buffers)
+
+(add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+
 ;; Repl mode hook
 (add-hook 'nrepl-mode-hook 'subword-mode)
- 
+
 ;; Auto completion for NREPL
 (require 'ac-nrepl)
 (eval-after-load "auto-complete"
-'(add-to-list 'ac-modes 'nrepl-mode))
+  '(add-to-list 'ac-modes 'nrepl-mode))
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 (put 'erase-buffer 'disabled nil)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+
+;; http://emacsblog.org/2007/01/17/indent-whole-buffer/
+(defun indent-buffer ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+(defalias 'iwb 'indent-buffer)
+
+;; https://realworldocaml.org/beta1/en/html/installation.html
+(add-to-list 'load-path (file-name-as-directory
+                         (expand-file-name "emacs/site-lisp"
+                                           (replace-regexp-in-string "[\r\n]+$" ""
+                                                                     (shell-command-to-string "opam config var share")))))
+(autoload 'utop "utop" "Toplevel for OCaml" t)
